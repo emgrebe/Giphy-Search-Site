@@ -1,31 +1,24 @@
 import React from 'react';
 import SearchBar from './components/SearchBar';
 import GifList from './components/GifList';
-import GifItem from './components/GifItem';
+import request from 'superagent';
 import './App.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      gifs: [
-        {
-          id: 1,
-          url: 'http://fakeimg.pl/300/'
-        }, {
-          id: 2,
-          url: 'http://fakeimg.pl/300/'
-        }, {
-          id: 3,
-          url: 'http://fakeimg.pl/300/'
-        }
-      ]
-    }
+      gifs: []
+    };
   }
 
-  handleTermChange(term) {
-    console.log(term);
-  }
+  handleTermChange = (term) => {
+    const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=KSr1QErON4lqtCNVSRQZVIF8Mqzd2A1E`;
+    
+    request.get(url, (err, res) => {
+      this.setState=({ gifs: res.body.data})
+    });
+  };
 
   render() {
     return (
