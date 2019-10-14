@@ -1,13 +1,18 @@
 import React from 'react';
+import SearchBar from './components/SearchBar';
 import './App.css';
 
 class App extends React.Component {
+  handleTermChange(term) {
+    console.log(term);
+  }
+
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          Giphy Search
-        </header>
+        <SearchBar
+          onTermChange={this.handleTermChange}
+        />
       </div>
     )
   }
