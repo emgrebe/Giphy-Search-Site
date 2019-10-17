@@ -6,10 +6,14 @@ const GifList = (props) => {
     return <GifItem 
       key={image.id} 
       gif={image}
+      onGifSelect={props.onGifSelect}
     />
   });
+  
   return (
-    <ul>{gifItems}</ul>
+    <div className='gif-list'>
+    {gifItems}
+    </div>
   );
 };
 

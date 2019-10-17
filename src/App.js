@@ -16,7 +16,7 @@ class App extends React.Component {
     const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=KSr1QErON4lqtCNVSRQZVIF8Mqzd2A1E`;
     
     request.get(url, (err, res) => {
-      this.setState=({ gifs: res.body.data})
+      this.setState({ gifs: res.body.data})
     });
   };
 
@@ -24,7 +24,7 @@ class App extends React.Component {
     return (
       <div className='App'>
         <SearchBar
-          onTermChange={this.handleTermChange}
+          onTermChange={term => this.handleTermChange(term)}
         />
         <GifList 
           gifs={this.state.gifs}
